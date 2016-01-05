@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="InternalDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="POLL_Answers">
+          <Key>
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="AnswerID" Type="int" Nullable="false" />
+          <Property Name="PollID" Type="int" Nullable="false" />
+          <Property Name="AnesDescription" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'InternalDb.dbo.POLL_Category' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="POLL_Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="CategoryDesc" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryDesc" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POLL_Questions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Statement" Type="varchar(max)" Nullable="false" />
+          <Property Name="Catagory" Type="int" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="StatusID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'InternalDb.dbo.POLL_Results' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="POLL_Results">
+          <Key>
+            <PropertyRef Name="POLLID" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="AnserID" />
+          </Key>
+          <Property Name="POLLID" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AnserID" Type="int" Nullable="false" />
+          <Property Name="AnserComments" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="POLL_Subscription">
+          <Key>
+            <PropertyRef Name="SubscriptionID" />
+          </Key>
+          <Property Name="SubscriptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'InternalDb.dbo.POLL_Types' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="POLL_Types">
+          <Key>
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeDescription" />
+          </Key>
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="TypeDescription" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="InternalDbModelStoreContainer">
+          <EntitySet Name="POLL_Answers" EntityType="Self.POLL_Answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POLL_Questions" EntityType="Self.POLL_Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POLL_Subscription" EntityType="Self.POLL_Subscription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POLL_Category" EntityType="Self.POLL_Category" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [POLL_Category].[CategoryID] AS [CategoryID], 
+    [POLL_Category].[CategoryDesc] AS [CategoryDesc]
+    FROM [dbo].[POLL_Category] AS [POLL_Category]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="POLL_Results" EntityType="Self.POLL_Results" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [POLL_Results].[POLLID] AS [POLLID], 
+    [POLL_Results].[UserId] AS [UserId], 
+    [POLL_Results].[AnserID] AS [AnserID], 
+    [POLL_Results].[AnserComments] AS [AnserComments]
+    FROM [dbo].[POLL_Results] AS [POLL_Results]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="POLL_Types" EntityType="Self.POLL_Types" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [POLL_Types].[TypeID] AS [TypeID], 
+    [POLL_Types].[TypeDescription] AS [TypeDescription]
+    FROM [dbo].[POLL_Types] AS [POLL_Types]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InternalDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="InternalDbEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="POLL_Answers" EntityType="InternalDbModel.POLL_Answers" />
+          <EntitySet Name="POLL_Questions" EntityType="InternalDbModel.POLL_Questions" />
+          <EntitySet Name="POLL_Subscription" EntityType="InternalDbModel.POLL_Subscription" />
+          <EntitySet Name="POLL_Results" EntityType="InternalDbModel.POLL_Results" />
+          <EntitySet Name="POLL_Types" EntityType="InternalDbModel.POLL_Types" />
+          <EntitySet Name="POLL_Category" EntityType="InternalDbModel.POLL_Category" />
+        </EntityContainer>
+        <EntityType Name="POLL_Answers">
+          <Key>
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="AnswerID" Type="Int32" Nullable="false" />
+          <Property Name="PollID" Type="Int32" Nullable="false" />
+          <Property Name="AnesDescription" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="POLL_Questions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Statement" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Catagory" Type="Int32" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="StatusID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="POLL_Subscription">
+          <Key>
+            <PropertyRef Name="SubscriptionID" />
+          </Key>
+          <Property Name="SubscriptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POLL_Results">
+          <Key>
+            <PropertyRef Name="POLLID" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="AnserID" />
+          </Key>
+          <Property Name="POLLID" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AnserID" Type="Int32" Nullable="false" />
+          <Property Name="AnserComments" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="POLL_Types">
+          <Key>
+            <PropertyRef Name="TypeID" />
+            <PropertyRef Name="TypeDescription" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="TypeDescription" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="POLL_Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="CategoryDesc" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryDesc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InternalDbModelStoreContainer" CdmEntityContainer="InternalDbEntities" >
+          <EntitySetMapping Name="POLL_Answers">
+            <EntityTypeMapping TypeName="InternalDbModel.POLL_Answers">
+              <MappingFragment StoreEntitySet="POLL_Answers">
+                <ScalarProperty Name="AnesDescription" ColumnName="AnesDescription" />
+                <ScalarProperty Name="PollID" ColumnName="PollID" />
+                <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POLL_Questions">
+            <EntityTypeMapping TypeName="InternalDbModel.POLL_Questions">
+              <MappingFragment StoreEntitySet="POLL_Questions">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Catagory" ColumnName="Catagory" />
+                <ScalarProperty Name="Statement" ColumnName="Statement" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POLL_Subscription">
+            <EntityTypeMapping TypeName="InternalDbModel.POLL_Subscription">
+              <MappingFragment StoreEntitySet="POLL_Subscription">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POLL_Results">
+            <EntityTypeMapping TypeName="InternalDbModel.POLL_Results">
+              <MappingFragment StoreEntitySet="POLL_Results">
+                <ScalarProperty Name="AnserComments" ColumnName="AnserComments" />
+                <ScalarProperty Name="AnserID" ColumnName="AnserID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="POLLID" ColumnName="POLLID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POLL_Types">
+            <EntityTypeMapping TypeName="InternalDbModel.POLL_Types">
+              <MappingFragment StoreEntitySet="POLL_Types">
+                <ScalarProperty Name="TypeDescription" ColumnName="TypeDescription" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POLL_Category">
+            <EntityTypeMapping TypeName="InternalDbModel.POLL_Category">
+              <MappingFragment StoreEntitySet="POLL_Category">
+                <ScalarProperty Name="CategoryDesc" ColumnName="CategoryDesc" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
