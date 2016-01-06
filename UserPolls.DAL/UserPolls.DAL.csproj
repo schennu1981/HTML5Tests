@@ -63,10 +63,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PolllsDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="POLL_Answers.cs">
+    <Compile Include="POLL_Category.cs">
       <DependentUpon>PolllsDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="POLL_Category.cs">
+    <Compile Include="POLL_Options.cs">
       <DependentUpon>PolllsDB.tt</DependentUpon>
     </Compile>
     <Compile Include="POLL_Questions.cs">
@@ -82,6 +82,9 @@
       <DependentUpon>PolllsDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SP_GetOpenQUestions_Result.cs">
+      <DependentUpon>PolllsDB.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

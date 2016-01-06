@@ -14,6 +14,7 @@ namespace UserPolls.DAL
     
     public partial class POLL_Results
     {
+        public int ResultID { get; set; }
         public int POLLID { get; set; }
         public string UserId { get; set; }
         public int AnserID { get; set; }

@@ -10,15 +10,12 @@
 namespace UserPolls.DAL
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class POLL_Questions
+    public partial class SP_GetOpenQUestions_Result
     {
-        public int ID { get; set; }
+        public Nullable<int> ID { get; set; }
         public string Statement { get; set; }
-        public Nullable<int> Catagory { get; set; }
-        public int Type { get; set; }
-        public Nullable<int> StatusID { get; set; }
+        public string AnesDescription { get; set; }
         public Nullable<System.DateTime> Expiry_date { get; set; }
     }
 }

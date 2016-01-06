@@ -12,6 +12,8 @@ namespace UserPolls.DAL
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class InternalDbEntities : DbContext
     {
@@ -25,11 +27,16 @@ namespace UserPolls.DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<POLL_Answers> POLL_Answers { get; set; }
-        public virtual DbSet<POLL_Questions> POLL_Questions { get; set; }
-        public virtual DbSet<POLL_Subscription> POLL_Subscription { get; set; }
-        public virtual DbSet<POLL_Results> POLL_Results { get; set; }
-        public virtual DbSet<POLL_Types> POLL_Types { get; set; }
         public virtual DbSet<POLL_Category> POLL_Category { get; set; }
+        public virtual DbSet<POLL_Options> POLL_Options { get; set; }
+        public virtual DbSet<POLL_Questions> POLL_Questions { get; set; }
+        public virtual DbSet<POLL_Results> POLL_Results { get; set; }
+        public virtual DbSet<POLL_Subscription> POLL_Subscription { get; set; }
+        public virtual DbSet<POLL_Types> POLL_Types { get; set; }
+    
+        public virtual ObjectResult<SP_GetOpenQUestions_Result> SP_GetOpenQUestions()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetOpenQUestions_Result>("SP_GetOpenQUestions");
+        }
     }
 }

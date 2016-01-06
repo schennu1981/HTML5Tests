@@ -12,7 +12,7 @@ namespace UserPolls.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class POLL_Answers
+    public partial class POLL_Options
     {
         public int AnswerID { get; set; }
         public int PollID { get; set; }

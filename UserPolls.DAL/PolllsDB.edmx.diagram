@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="626a1b96e8b341288cdf20815794cc80" Name="Diagram1" >
-        <EntityTypeShape EntityType="InternalDbModel.POLL_Answers" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="InternalDbModel.POLL_Questions" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="InternalDbModel.POLL_Subscription" Width="1.5" PointX="0.75" PointY="3.75" />
+      <Diagram DiagramId="626a1b96e8b341288cdf20815794cc80" Name="Diagram1" ZoomLevel="74" >
+        <EntityTypeShape EntityType="InternalDbModel.POLL_Category" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InternalDbModel.POLL_Options" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InternalDbModel.POLL_Questions" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="InternalDbModel.POLL_Results" Width="1.5" PointX="2.75" PointY="3.75" />
-        <EntityTypeShape EntityType="InternalDbModel.POLL_Types" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="InternalDbModel.POLL_Category" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="InternalDbModel.POLL_Subscription" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InternalDbModel.POLL_Types" Width="1.5" PointX="4.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
